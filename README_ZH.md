@@ -9,5 +9,5 @@
 4. **可视化时间表** - 生成一个清晰的时间表，帮助用户直观地了解任务的分布和时间安排，提升时间管理效率。
 
 ## 技术栈
-- Android开发：Java
-- AI调用：**[langchain4j](https://github.com/langchain4j/langchain4j.git)** （Java版的Langchain库）
+- Android开发：Kotlin
+- AI调用：**[KOOG](https://github.com/JetBrains/koog)** （Java版的Langchain库）

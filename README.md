@@ -10,5 +10,5 @@ DeadlineManager is an app designed to help users manage their deadlines effectiv
 4. **Visual Schedule** - The app generates a clear visual schedule to help users intuitively understand the distribution and timing of their tasks, thereby improving time management efficiency.
 
 ## Tech Stack
-- Android Development: Java
-- AI Integration: **[langchain4j](https://github.com/langchain4j/langchain4j.git)** (Java version of the Langchain library)
+- Android Development: Kotlin
+- AI Integration: **[KOOG](https://github.com/JetBrains/koog)** (Java version of the Langchain library)
