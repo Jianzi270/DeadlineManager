@@ -11,4 +11,4 @@ DeadlineManager is an app designed to help users manage their deadlines effectiv
 
 ## Tech Stack
 - Android Development: Kotlin
-- AI Integration: **[KOOG](https://github.com/JetBrains/koog)** (Java version of the Langchain library)
+- AI Integration: **[KOOG](https://github.com/JetBrains/koog)** (Kotlin version of the Langchain library)

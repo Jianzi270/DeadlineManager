@@ -10,4 +10,4 @@
 
 ## 技术栈
 - Android开发：Kotlin
-- AI调用：**[KOOG](https://github.com/JetBrains/koog)** （Java版的Langchain库）
+- AI调用：**[KOOG](https://github.com/JetBrains/koog)** （Kotlin版的Langchain库）
