@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">DeadlineManager</string>
+    <string name="app_name">DDL管家</string>
+    <string name="no_ddl_yet">暂无DDL，点击＋添加</string>
+    <string name="add_ddl">添加DDL</string>
+    <string name="ddl_title">DDL标题</string>
+    <string name="ddl_date">截止日期</string>
+    <string name="save">保存</string>
+    <string name="cancel">取消</string>
+    <string name="delete">删除</string>
+    <string name="edit">编辑</string>
+    <string name="tasks">子任务</string>
+    <string name="completed">已完成</string>
+    <string name="pending">待完成</string>
 </resources>

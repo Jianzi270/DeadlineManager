@@ -11,3 +11,6 @@
 ## 技术栈
 - Android开发：Kotlin
 - AI调用：**[KOOG](https://github.com/JetBrains/koog)** （Kotlin版的Langchain库）
+
+## 项目进展
+[界面如图](./ProjectPreview/preview1.png)
