@@ -6,14 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.zzllm.deadlinemanager.data.DDL
 
 class DdlListAdapter : RecyclerView.Adapter<DdlListAdapter.DdlViewHolder>() {
 
     // 数据列表，初始为空
-    private var ddlList = listOf<Any>()
+    private var ddlList = listOf<DDL>()
 
     // 设置数据并刷新
-    fun submitList(list: List<Any>) {
+    fun submitList(list: List<DDL>) {
         ddlList = list
         notifyDataSetChanged()
     }
@@ -36,12 +37,11 @@ class DdlListAdapter : RecyclerView.Adapter<DdlListAdapter.DdlViewHolder>() {
         private val tvDueDate: TextView = itemView.findViewById(R.id.tvDueDate)
         private val tvProgress: TextView = itemView.findViewById(R.id.tvProgress)
 
-        fun bind(ddl: Any) {
-            //Todo
-//            tvTitle.text = ddl.title
-//            tvDueDate.text = "截止日期：${ddl.dueDate}"
-//            // 进度显示（暂时用占位，后续可计算子任务完成情况）
-//            tvProgress.text = "任务进度：0/0"
+        fun bind(ddl: DDL) {
+            tvTitle.text = ddl.title
+            tvDueDate.text = "截止日期：${ddl.dueDate}"
+            // 进度显示（暂时用占位，后续可计算子任务完成情况）
+            tvProgress.text = "任务进度：0/0"
         }
     }
 }

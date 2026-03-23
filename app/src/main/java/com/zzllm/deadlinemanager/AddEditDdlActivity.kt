@@ -1,46 +1,86 @@
-// AddEditDdlActivity.kt
 package com.zzllm.deadlinemanager
 
+import android.app.DatePickerDialog
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.button.MaterialButton
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
+import androidx.lifecycle.ViewModelProvider
+import com.zzllm.deadlinemanager.data.AppDatabase
+import com.zzllm.deadlinemanager.data.ddlRepository
+import com.zzllm.deadlinemanager.databinding.ActivityAddEditDdlBinding
+import com.zzllm.deadlinemanager.viewModel.AddEditDdlViewModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 class AddEditDdlActivity : AppCompatActivity() {
 
-    private lateinit var tilTitle: TextInputLayout
-    private lateinit var etTitle: TextInputEditText
-    private lateinit var tilDate: TextInputLayout
-    private lateinit var etDate: TextInputEditText
-    private lateinit var btnSave: MaterialButton
-    private lateinit var btnCancel: MaterialButton
+    private lateinit var binding: ActivityAddEditDdlBinding
+    private lateinit var viewModel: AddEditDdlViewModel
+    private val calendar = Calendar.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_add_edit_ddl)
+        binding = ActivityAddEditDdlBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        // 绑定视图
-        //Todo
-//        tilTitle = findViewById(R.id.tilTitle)
-//        etTitle = findViewById(R.id.etTitle)
-//        tilDate = findViewById(R.id.tilDate)
-//        etDate = findViewById(R.id.etDate)
-//        btnSave = findViewById(R.id.btnSave)
-//        btnCancel = findViewById(R.id.btnCancel)
+        // 初始化 ViewModel
+        val database = AppDatabase.getInstance(this)
+        val repository = ddlRepository(database)
+        viewModel = ViewModelProvider(this, object : ViewModelProvider.Factory {
+            override fun <T : androidx.lifecycle.ViewModel> create(modelClass: Class<T>): T {
+                @Suppress("UNCHECKED_CAST")
+                return AddEditDdlViewModel(repository) as T
+            }
+        })[AddEditDdlViewModel::class.java]
 
-        // 保存按钮点击事件
-        btnSave.setOnClickListener {
-            val title = etTitle.text.toString()
-            val dueDate = etDate.text.toString()
-            // 后续调用 Repository 保存 DDL
-            // 保存成功后关闭页面
-            finish()
+        // 设置日期选择器
+        binding.etDate.setOnClickListener {
+            showDatePicker()
+        }
+
+        // 保存按钮
+        binding.btnSave.setOnClickListener {
+            val title = binding.etTitle.text.toString().trim()
+            val dueDate = binding.etDate.text.toString().trim()
+
+            if (title.isEmpty()) {
+                binding.tilTitle.error = getString(R.string.title_required)
+                return@setOnClickListener
+            }
+            if (dueDate.isEmpty()) {
+                binding.tilDate.error = getString(R.string.date_required)
+                return@setOnClickListener
+            }
+
+            viewModel.insertDdl(title, dueDate) { id ->
+                if (id > 0) {
+                    Toast.makeText(this, R.string.save_success, Toast.LENGTH_SHORT).show()
+                    setResult(RESULT_OK)
+                    finish()
+                } else {
+                    Toast.makeText(this, R.string.save_failed, Toast.LENGTH_SHORT).show()
+                }
+            }
         }
 
         // 取消按钮
-        btnCancel.setOnClickListener {
+        binding.btnCancel.setOnClickListener {
             finish()
         }
+    }
+
+    private fun showDatePicker() {
+        DatePickerDialog(
+            this,
+            { _, year, month, dayOfMonth ->
+                calendar.set(year, month, dayOfMonth)
+                val format = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                binding.etDate.setText(format.format(calendar.time))
+                binding.tilDate.error = null
+            },
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        ).show()
     }
 }

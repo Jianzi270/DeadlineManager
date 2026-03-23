@@ -11,4 +11,8 @@
     <string name="tasks">子任务</string>
     <string name="completed">已完成</string>
     <string name="pending">待完成</string>
+    <string name="title_required">请填写DDL标题</string>
+    <string name="date_required">请选择截止日期</string>
+    <string name="save_success">保存成功</string>
+    <string name="save_failed">保存失败，请重试</string>
 </resources>

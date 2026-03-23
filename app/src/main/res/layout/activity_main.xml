@@ -16,9 +16,13 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+
+            android:background="@drawable/toolbar_bottom_border"
+            android:textAlignment="textEnd"
+
             app:title="@string/app_name"
-            app:titleTextColor="@android:color/white" />
+            app:titleTextAppearance="@style/TextAppearance.AppCompat.Display1"
+            app:titleTextColor="@android:color/black" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
