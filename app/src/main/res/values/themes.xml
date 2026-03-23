@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- 基础主题 -->
-    <style name="Theme.DDLManager" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.DDLManager" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- 主色调 -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -13,11 +13,5 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- 窗口背景 -->
         <item name="android:windowBackground">@color/white</item>
-    </style>
-
-    <!-- 可选：Toolbar 专用样式（若不使用默认，可在此定义） -->
-    <style name="ToolbarStyle" parent="Widget.MaterialComponents.Toolbar.Primary">
-        <item name="android:background">?attr/colorPrimary</item>
-        <item name="titleTextColor">@color/white</item>
     </style>
 </resources>

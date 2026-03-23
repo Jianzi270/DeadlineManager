@@ -7,7 +7,7 @@ import com.zzllm.deadlinemanager.data.DDL
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface ddlDAO {
+interface DDLDAO {
     @Insert
     suspend fun insert(ddl: DDL): Long
 

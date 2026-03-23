@@ -6,7 +6,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import android.content.Context
 import com.zzllm.deadlinemanager.data.DDL
-import com.zzllm.deadlinemanager.data.ddlDAO
+import com.zzllm.deadlinemanager.data.DDLDAO
 
 @Database(
     entities = [DDL::class],
@@ -14,7 +14,7 @@ import com.zzllm.deadlinemanager.data.ddlDAO
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun ddlDao(): ddlDAO
+    abstract fun ddlDao(): DDLDAO
 
     companion object {
         @Volatile

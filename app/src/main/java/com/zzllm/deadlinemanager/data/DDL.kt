@@ -10,5 +10,6 @@ data class DDL(
     val id: Int = 0,
     val title: String,
     val dueDate: String,          // 存储格式 "yyyy-MM-dd"
-    val createdAt: Long = System.currentTimeMillis()
+    val createdAt: Long = System.currentTimeMillis(),
+    val description: String
 )

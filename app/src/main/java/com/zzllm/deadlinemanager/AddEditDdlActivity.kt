@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.zzllm.deadlinemanager.data.AppDatabase
-import com.zzllm.deadlinemanager.data.ddlRepository
+import com.zzllm.deadlinemanager.data.DDLRepository
 import com.zzllm.deadlinemanager.databinding.ActivityAddEditDdlBinding
 import com.zzllm.deadlinemanager.viewModel.AddEditDdlViewModel
 import java.text.SimpleDateFormat
@@ -25,7 +25,7 @@ class AddEditDdlActivity : AppCompatActivity() {
 
         // 初始化 ViewModel
         val database = AppDatabase.getInstance(this)
-        val repository = ddlRepository(database)
+        val repository = DDLRepository(database)
         viewModel = ViewModelProvider(this, object : ViewModelProvider.Factory {
             override fun <T : androidx.lifecycle.ViewModel> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
