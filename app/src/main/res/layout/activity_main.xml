@@ -14,8 +14,13 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:title="@string/app_name" />
+            android:layout_height="56dp"
+            android:background="@color/white"
+            app:titleTextColor="@color/black"
+            app:titleMarginStart="20dp"
+            app:titleMarginEnd="20dp"
+            app:titleTextAppearance="@style/MinimalToolbarTitle"
+            app:elevation="0dp" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
@@ -34,14 +39,14 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <!-- 添加 DDL 的浮动按钮 -->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAddDdl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:src="@drawable/ic_add_white_24dp"
-        app:backgroundTint="?attr/colorAccent"
-        app:tint="@android:color/white" />
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:id="@+id/fabAddDdl"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="bottom|end"-->
+<!--        android:layout_margin="16dp"-->
+<!--        android:src="@drawable/ic_add_white_24dp"-->
+<!--        app:backgroundTint="?attr/colorAccent"-->
+<!--        app:tint="@android:color/white" />-->
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

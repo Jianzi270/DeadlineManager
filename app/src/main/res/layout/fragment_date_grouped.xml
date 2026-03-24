@@ -12,7 +12,17 @@
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="选择日期"
+        android:text="@string/selectDate"
+        android:layout_margin="16dp"
+        app:strokeColor="?attr/colorSecondary"
+        app:strokeWidth="2dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/showAllButton"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/showAllDDLs"
         android:layout_margin="16dp"
         app:strokeColor="?attr/colorSecondary"
         app:strokeWidth="2dp" />
@@ -24,5 +34,15 @@
         android:layout_weight="1"
         android:padding="8dp"
         android:scrollbars="vertical" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddDdl02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_add_white_24dp"
+        app:backgroundTint="?attr/colorAccent"
+        app:tint="@android:color/white" />
 
 </LinearLayout>

@@ -30,6 +30,15 @@
                 tools:text="2023-10-01" />
 
             <TextView
+                android:id="@+id/tvCurrentTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textSize="18sp"
+                android:textColor="?attr/colorOnPrimary"
+                tools:text="10:30" />
+
+            <TextView
                 android:id="@+id/tvGreeting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -70,7 +79,7 @@
 
     <!-- Add DDL floating button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAddDdl"
+        android:id="@+id/fabAddDdl01"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"

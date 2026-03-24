@@ -15,7 +15,6 @@ import com.zzllm.deadlinemanager.ui.DateGroupedFragment
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewPager: ViewPager2
-    private lateinit var fabAddDdl: FloatingActionButton
     private lateinit var tabLayout: TabLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +27,6 @@ class MainActivity : AppCompatActivity() {
 
         // 初始化视图
         viewPager = findViewById(R.id.viewPager)
-        fabAddDdl = findViewById(R.id.fabAddDdl)
         tabLayout = findViewById(R.id.tabLayout)
 
         // 设置 ViewPager 适配器
@@ -44,10 +42,5 @@ class MainActivity : AppCompatActivity() {
             }
         }.attach()
 
-        // 点击 FAB 跳转到添加页面
-        fabAddDdl.setOnClickListener {
-            val intent = Intent(this, AddEditDdlActivity::class.java)
-            startActivity(intent)
-        }
     }
 }

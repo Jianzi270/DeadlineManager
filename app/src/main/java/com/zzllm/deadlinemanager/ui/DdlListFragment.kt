@@ -2,6 +2,8 @@ package com.zzllm.deadlinemanager.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,9 +20,9 @@ import com.zzllm.deadlinemanager.R
 import com.zzllm.deadlinemanager.data.AppDatabase
 import com.zzllm.deadlinemanager.data.DDLRepository
 import com.zzllm.deadlinemanager.viewModel.MainViewModel
-import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlinx.coroutines.launch
 
 class DdlListFragment : Fragment() {
 
@@ -28,9 +30,13 @@ class DdlListFragment : Fragment() {
     private lateinit var emptyView: TextView
     private lateinit var fabAddDdl: FloatingActionButton
     private lateinit var tvCurrentDate: TextView
+    private lateinit var tvCurrentTime: TextView
     private lateinit var tvGreeting: TextView
     private lateinit var adapter: DdlListAdapter
     private lateinit var viewModel: MainViewModel
+    private lateinit var handler: Handler
+    private lateinit var updateTimeRunnable: Runnable
+    private val timeZone = TimeZone.getTimeZone("Asia/Shanghai")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,8 +51,9 @@ class DdlListFragment : Fragment() {
         // 初始化视图
         recyclerView = view.findViewById(R.id.recyclerView)
         emptyView = view.findViewById(R.id.emptyView)
-        fabAddDdl = view.findViewById(R.id.fabAddDdl)
+        fabAddDdl = view.findViewById(R.id.fabAddDdl01)
         tvCurrentDate = view.findViewById(R.id.tvCurrentDate)
+        tvCurrentTime = view.findViewById(R.id.tvCurrentTime)
         tvGreeting = view.findViewById(R.id.tvGreeting)
 
         // 设置 RecyclerView 布局管理器
@@ -84,6 +91,7 @@ class DdlListFragment : Fragment() {
 
         // 设置当前日期和问候语
         setCurrentDate()
+        setCurrentTime()
         setGreeting()
 
         // 点击 FAB 跳转到添加页面
@@ -91,18 +99,50 @@ class DdlListFragment : Fragment() {
             val intent = Intent(requireContext(), AddEditDdlActivity::class.java)
             startActivity(intent)
         }
+
+        // 初始化 Handler 和 Runnable
+        handler = Handler(Looper.getMainLooper())
+        updateTimeRunnable = object : Runnable {
+            override fun run() {
+                setCurrentTime()
+                handler.postDelayed(this, 1000)
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // 开始更新时间的循环
+        handler.post(updateTimeRunnable)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        // 停止更新时间的循环
+        handler.removeCallbacks(updateTimeRunnable)
     }
 
     private fun setCurrentDate() {
-        val currentDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
+        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        sdf.timeZone = timeZone
+        val currentDate = sdf.format(Date())
         tvCurrentDate.text = currentDate
     }
 
+    private fun setCurrentTime() {
+        val sdf = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+        sdf.timeZone = timeZone
+        val currentTime = sdf.format(Date())
+        tvCurrentTime.text = currentTime
+    }
+
     private fun setGreeting() {
-        val hourOfDay = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+        val calendar = Calendar.getInstance(timeZone)
+        val hourOfDay = calendar.get(Calendar.HOUR_OF_DAY)
         val greeting = when {
-            hourOfDay < 12 -> "早上好"
-            hourOfDay < 18 -> "下午好"
+            hourOfDay in 6..11 -> "早上好"
+            hourOfDay in 12..13 -> "中午好"
+            hourOfDay in 14..17 -> "下午好"
             else -> "晚上好"
         }
         tvGreeting.text = greeting

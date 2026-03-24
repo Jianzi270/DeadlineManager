@@ -15,4 +15,6 @@
     <string name="date_required">请选择截止日期</string>
     <string name="save_success">保存成功</string>
     <string name="save_failed">保存失败，请重试</string>
+    <string name="showAllDDLs">显示所有DDL</string>
+    <string name="selectDate">选择日期</string>
 </resources>
