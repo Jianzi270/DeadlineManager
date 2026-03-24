@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">DDL管家</string>
-    <string name="no_ddl_yet">暂无DDL，点击＋添加</string>
+    <string name="no_ddl_yet">暂无今日DDL，点击＋添加</string>
     <string name="add_ddl">添加DDL</string>
     <string name="ddl_title">DDL标题</string>
     <string name="ddl_date">截止日期</string>

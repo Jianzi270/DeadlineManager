@@ -17,33 +17,21 @@
             android:layout_height="?attr/actionBarSize"
             app:title="@string/app_name" />
 
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabMode="fixed"
+            app:tabGravity="fill" />
+
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!-- 主内容：RecyclerView + 空视图提示 -->
-    <FrameLayout
+    <!-- 主内容：ViewPager -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:padding="8dp"
-            android:scrollbars="vertical" />
-
-        <TextView
-            android:id="@+id/emptyView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/no_ddl_yet"
-            android:textSize="18sp"
-            android:visibility="gone"
-            tools:visibility="visible" />
-
-    </FrameLayout>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <!-- 添加 DDL 的浮动按钮 -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton

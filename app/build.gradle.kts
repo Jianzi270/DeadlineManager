@@ -70,4 +70,8 @@ dependencies {
     // ViewModel & LiveData
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.10.0")
+    // ViewPager2
+    implementation("androidx.viewpager2:viewpager2:1.1.0")
+    // Fragment
+    implementation("androidx.fragment:fragment-ktx:1.8.5")
 }

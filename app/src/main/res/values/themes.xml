@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- 基础主题 -->
-    <style name="Theme.DDLManager" parent="Theme.Material3.DayNight.NoActionBar">
+    <!-- 基础主题 - 使用 Material Components 主题以兼容 Material 组件 -->
+    <style name="Theme.DDLManager" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- 主色调 -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -9,6 +9,8 @@
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
+        <!-- 向后兼容性：为 AppCompat/Material 1.x 提供 colorAccent -->
+        <item name="colorAccent">@color/teal_200</item>
         <!-- 状态栏颜色 -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- 窗口背景 -->
