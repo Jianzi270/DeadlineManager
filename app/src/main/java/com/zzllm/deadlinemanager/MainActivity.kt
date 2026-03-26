@@ -36,8 +36,8 @@ class MainActivity : AppCompatActivity() {
         // 设置 TabLayout 与 ViewPager 关联
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = when (position) {
-                0 -> "按截止日期"
-                1 -> "按日期分组"
+                0 -> "今日任务"
+                1 -> "任务概览"
                 else -> null
             }
         }.attach()

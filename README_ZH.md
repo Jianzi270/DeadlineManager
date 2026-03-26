@@ -12,5 +12,8 @@
 - Android开发：Kotlin
 - AI调用：**[KOOG](https://github.com/JetBrains/koog)** （Kotlin版的Langchain库）
 
+## 快速开始
+点击“+”号，输入 DDL 名称、截止日期和具体描述，应用接入大模型解析任务内容，生成合理的子任务细化和日程安排，在应用界面展示当天截止的子任务和相应的 DDL。还可以选择查看所有 DDL 或按照日期查看 DDL。
+
 ## 项目进展
-[界面如图](./ProjectPreview/preview1.png)
+[界面如图](./ProjectPreview/preview2.png)

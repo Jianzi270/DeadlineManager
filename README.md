@@ -12,3 +12,6 @@ DeadlineManager is an app designed to help users manage their deadlines effectiv
 ## Tech Stack
 - Android Development: Kotlin
 - AI Integration: **[KOOG](https://github.com/JetBrains/koog)** (Kotlin version of the Langchain library)
+
+## Quick Start
+Click the "+" button, input the title, deadline and description of your task. The app will split your task into several subtasks and schedule with the help of AI. The application interface displays the subtasks due for the day and their corresponding deadlines. Users can also choose to view all deadlines or view deadlines by date.

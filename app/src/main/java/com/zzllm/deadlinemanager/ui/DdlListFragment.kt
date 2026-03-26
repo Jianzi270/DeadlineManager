@@ -15,11 +15,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.zzllm.deadlinemanager.AddEditDdlActivity
+import com.zzllm.deadlinemanager.DdlDetailActivity
 import com.zzllm.deadlinemanager.DdlListAdapter
 import com.zzllm.deadlinemanager.R
 import com.zzllm.deadlinemanager.data.AppDatabase
+import com.zzllm.deadlinemanager.data.DDL
 import com.zzllm.deadlinemanager.data.DDLRepository
+import com.zzllm.deadlinemanager.data.SubTask
 import com.zzllm.deadlinemanager.viewModel.MainViewModel
+import kotlinx.coroutines.flow.first
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlinx.coroutines.launch
@@ -63,6 +67,23 @@ class DdlListFragment : Fragment() {
         adapter = DdlListAdapter()
         recyclerView.adapter = adapter
 
+        // 设置点击监听器
+        adapter.onItemClick = { item ->
+            when (item) {
+                is DDL -> {
+                    val intent = Intent(requireContext(), DdlDetailActivity::class.java)
+                    intent.putExtra("ddl_id", item.id)
+                    startActivity(intent)
+                }
+                is SubTask -> {
+                    // 可以选择进入详情或什么
+                    val intent = Intent(requireContext(), DdlDetailActivity::class.java)
+                    intent.putExtra("ddl_id", item.ddlId)
+                    startActivity(intent)
+                }
+            }
+        }
+
         // 初始化 ViewModel
         val database = AppDatabase.getInstance(requireContext())
         val repository = DDLRepository(database)
@@ -75,11 +96,22 @@ class DdlListFragment : Fragment() {
 
         // 观察数据变化
         lifecycleScope.launch {
-            viewModel.ddlList.collect { ddls ->
-                val today = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
-                val todaysDdls = ddls.filter { it.dueDate == today }
-                adapter.submitList(todaysDdls)
-                if (todaysDdls.isEmpty()) {
+            viewModel.ddlList.collect { DDLs ->
+                val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                sdf.timeZone = timeZone
+                val today = sdf.format(Date())
+                val todaysDdls = DDLs.filter { it.dueDate == today }
+                val todaysSubTask = mutableListOf<SubTask>()
+                val DDLWithTodaySubTask = mutableListOf<DDL>()
+                todaysDdls.forEach { ddl ->
+                    todaysSubTask.addAll(viewModel.getSubTasksForDdl(ddl.id).first())
+                }
+                todaysSubTask.forEach { subTask ->
+                    DDLWithTodaySubTask.addAll(DDLs.filter { it.id == subTask.ddlId })
+                }
+                val distinctDDLs = DDLWithTodaySubTask.distinct()
+                adapter.submitList(distinctDDLs, todaysSubTask)
+                if (todaysDdls.isEmpty() && todaysSubTask.isEmpty()) {
                     recyclerView.visibility = View.GONE
                     emptyView.visibility = View.VISIBLE
                 } else {

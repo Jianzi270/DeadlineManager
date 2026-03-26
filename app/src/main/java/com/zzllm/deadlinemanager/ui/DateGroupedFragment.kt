@@ -54,6 +54,7 @@ class DateGroupedFragment : Fragment() {
         val database = AppDatabase.getInstance(requireContext())
         val repository = DDLRepository(database)
         fabDDL = view.findViewById(R.id.fabAddDdl02)
+
         viewModel = ViewModelProvider(this, object : ViewModelProvider.Factory {
             override fun <T : androidx.lifecycle.ViewModel> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")

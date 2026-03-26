@@ -18,6 +18,9 @@
         <activity
             android:name=".AddEditDdlActivity"
             android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".DdlDetailActivity"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>

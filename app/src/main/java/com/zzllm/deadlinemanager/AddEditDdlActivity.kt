@@ -42,6 +42,7 @@ class AddEditDdlActivity : AppCompatActivity() {
         binding.btnSave.setOnClickListener {
             val title = binding.etTitle.text.toString().trim()
             val dueDate = binding.etDate.text.toString().trim()
+            var description = binding.etDescription.text.toString().trim()
 
             if (title.isEmpty()) {
                 binding.tilTitle.error = getString(R.string.title_required)
@@ -51,8 +52,10 @@ class AddEditDdlActivity : AppCompatActivity() {
                 binding.tilDate.error = getString(R.string.date_required)
                 return@setOnClickListener
             }
-
-            viewModel.insertDdl(title, dueDate) { id ->
+            if (description.isEmpty()) {
+                description = ""
+            }
+            viewModel.insertDdl(title, dueDate, description) { id ->
                 if (id > 0) {
                     Toast.makeText(this, R.string.save_success, Toast.LENGTH_SHORT).show()
                     setResult(RESULT_OK)
