@@ -14,9 +14,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.zzllm.deadlinemanager.AddEditDdlActivity
+import com.zzllm.deadlinemanager.DdlDetailActivity
 import com.zzllm.deadlinemanager.DdlListAdapter
 import com.zzllm.deadlinemanager.R
 import com.zzllm.deadlinemanager.data.AppDatabase
+import com.zzllm.deadlinemanager.data.DDL
 import com.zzllm.deadlinemanager.data.DDLRepository
 import com.zzllm.deadlinemanager.viewModel.MainViewModel
 import kotlinx.coroutines.launch
@@ -49,6 +51,15 @@ class DateGroupedFragment : Fragment() {
 
         adapter = DdlListAdapter()
         recyclerView.adapter = adapter
+
+        // 设置点击监听器
+        adapter.onItemClick = { item ->
+            if (item is DDL) {
+                val intent = Intent(requireContext(), DdlDetailActivity::class.java)
+                intent.putExtra("ddl_id", item.id)
+                startActivity(intent)
+            }
+        }
 
         // 初始化 ViewModel
         val database = AppDatabase.getInstance(requireContext())
